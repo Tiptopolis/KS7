@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Matrix4;
 
 import prime.Core.uSketcher;
 import prime.Core.Data.aType;
@@ -45,6 +46,8 @@ public class uChumpEngine extends ApplicationAdapter {
 		this.gP1();
 	}
 
+	float theta = 0;
+
 	@Override
 	public void render() {
 
@@ -56,20 +59,27 @@ public class uChumpEngine extends ApplicationAdapter {
 
 		// Sketcher.setProjectionMatrix(CAMERA.getProjection());
 
-		// METATRON.Eye().logInput = true;
+		METATRON.Eye().logInput = true;
 		// Sketcher.setProjectionMatrix(METATRON.Eye().getProjection());
-		Sketcher.setProjectionMatrix(METATRON.CAMERA.getProjection());
+		Matrix4 useMat = METATRON.Eye().getProjection();
+		theta += deltaTime;
+		if (theta >= 10) {
+			METATRON.closeEye();
+			useMat = METATRON.CAMERA.getProjection();
+		}
+		Sketcher.setProjectionMatrix(useMat);
 		Sketcher.begin();
 		Sketcher.getBatch().draw(image, 140, 210);
 		Sketcher.end();
 
-		 lT1();
+		
+		lT1();
 		// Log();
 		// lT2();
 		// Log();
 		lT3();
 		// Log(METATRON.Multiplexer.getProcessors());
-		//lP1();
+		// lP1();
 
 	}
 
@@ -99,10 +109,9 @@ public class uChumpEngine extends ApplicationAdapter {
 	public void gT2() {
 
 	}
-	
-	public void gP1()
-	{
-		
+
+	public void gP1() {
+
 	}
 
 	public void lT1() {
@@ -139,8 +148,7 @@ public class uChumpEngine extends ApplicationAdapter {
 
 	public void lT3() {
 
-		for(Entry E : METATRON.VTS.Primitives)
-		{
+		for (Entry E : METATRON.VTS.Primitives) {
 			Log(E);
 		}
 		for (Object E : METATRON.VTS.Primitives.getValues()) {
@@ -149,8 +157,6 @@ public class uChumpEngine extends ApplicationAdapter {
 				Log(T.toLog());
 			}
 		}
-		
-
 
 		Log("0 " + Metatron.INT.isOf(Metatron.NUM));
 		Log("1 " + Metatron.NUM.isOf(Metatron.INT));
@@ -166,29 +172,27 @@ public class uChumpEngine extends ApplicationAdapter {
 		Log("NUM> " + Metatron.NUM.covers(Metatron.INT));
 
 	}
-	
+
 	aMap<String, aType> Dex;
-	
-	public void lP1()
-	{
+
+	public void lP1() {
 		Dex = new aMap<String, aType>();
 		aType Mon = new aType(true, null, "Mon", aType.class);
-		
-		aType newMon = new aType(true, Dex,"BLB", Mon);
-		 newMon = new aType(true, Dex,"CHR", Mon);
-		 newMon = new aType(true, Dex,"SQR", Mon);
-		 
-		 Log(Mon.toLog());
-		for(Entry<String,aType> E : Dex)
-		{
-			//aType T = (aType)o;
-			if(E.getValue()!= null) {
-			Log(E);
+
+		aType newMon = new aType(true, Dex, "BLB", Mon);
+		newMon = new aType(true, Dex, "CHR", Mon);
+		newMon = new aType(true, Dex, "SQR", Mon);
+
+		Log(Mon.toLog());
+		for (Entry<String, aType> E : Dex) {
+			// aType T = (aType)o;
+			if (E.getValue() != null) {
+				Log(E);
 			}
 		}
-		
+
 		Log();
 		Log(Dex.get("BLB"));
-		
+
 	}
 }

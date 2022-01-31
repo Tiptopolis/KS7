@@ -45,6 +45,8 @@ public class uFpsAdapter extends pCameraAdapter {
 	protected boolean isMoving;
 	private float velocity = 5;
 	private float degreesPerPixel = 0.5f;
+	
+	float far = 0f;
 
 	static {
 		CommandMap.put("FORWARD", Keys.W);
@@ -81,6 +83,7 @@ public class uFpsAdapter extends pCameraAdapter {
 		// primary.subadapters.add(this);
 		primary.addAdapter(this);
 		this.primary = primary;
+		
 	}
 
 	@Override
@@ -88,6 +91,7 @@ public class uFpsAdapter extends pCameraAdapter {
 		super.init();
 		// this.setCameraPosition(this.primary.Camera.getOfficialPosition().add(0, 0,
 		// 16));
+		this.far = this.primary.getPerspective().far;
 		this.isOn = true;
 	}
 
@@ -105,7 +109,7 @@ public class uFpsAdapter extends pCameraAdapter {
 	public void update() {
 		if (this.exists && isOn) {
 			super.update();
-
+			//this.perspective.camera.far = this.far*this.primary.Camera.zoom;
 			if (this.logInput)
 				for (Entry e : CommandMap.entrySet()) {
 					if (Gdx.input.isKeyPressed((int) e.getValue())) {
