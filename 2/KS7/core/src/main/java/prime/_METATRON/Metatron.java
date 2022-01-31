@@ -96,7 +96,6 @@ public class Metatron extends InputAdapter implements iMonad {
 		if (CAMERA != null && CAMERA.isOn)
 			CAMERA.update(deltaTime);
 		if (EYE != null && EYE.isOn) {
-			// this.Explorer.perspective.camera.far = this.far * CAMERA.Camera.zoom;
 			EYE.perspective.camera.far = this.far * CAMERA.Camera.zoom;
 			EYE.update();
 		}
@@ -104,9 +103,6 @@ public class Metatron extends InputAdapter implements iMonad {
 
 	public static void openEye() {
 		EYE = new uFpsAdapter(CAMERA);
-		// EYE.Camera.viewport = CAMERA.Camera.viewport;
-		// TheMetatron.Multiplexer.addProcessor(EYE);
-		
 		CAMERA.addAdapter(EYE);
 		EYE.init();
 		TheMetatron.far = EYE.perspective.camera.far * 2f;
@@ -115,6 +111,7 @@ public class Metatron extends InputAdapter implements iMonad {
 	public static void closeEye() {
 		CAMERA.removeAdapter(EYE);
 		EYE.isOn = false;
+		TheMetatron.far = 0f;
 	}
 
 	public static uFpsAdapter Eye() {

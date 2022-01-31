@@ -6,8 +6,9 @@ import prime.Core.Primitive.A_I.iCollection;
 import prime.Core.System.Console.Console;
 import prime.Core.System.Console.ConsoleUI;
 import prime.Core.System.Console.UI.iConsoleListener;
+import prime.Core.System.Event._EventShell;
 
-public class uApp implements iApplet {
+public class uApp extends _EventShell  implements iApplet{
 	public static uApp Current;
 	public boolean running;
 	private long prevTime = System.nanoTime();
@@ -18,37 +19,38 @@ public class uApp implements iApplet {
 
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
+		super.init();
+
 
 	}
 
 	@Override
 	public void update(float deltaTime) {
-		// TODO Auto-generated method stub
+		super.update(deltaTime);
 
 	}
 
 	@Override
 	public void update(int deltaTime) {
-		// TODO Auto-generated method stub
+		super.update(deltaTime);
 
 	}
 
 	@Override
 	public void render() {
-		// TODO Auto-generated method stub
+
 
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
+
 
 	}
 
 	// kills the console thread, ensures everything is properly GC'd.
 	public void dispose() {
-
+		super.dispose();
 		AppConsole.IO.dispose();
 		UI.dispose();
 		Log("D-------------------------------------------------------G");
@@ -88,52 +90,6 @@ public class uApp implements iApplet {
 		return log;
 	}
 
-	@Override
-	public boolean keyDown(int keycode) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean keyUp(int keycode) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean keyTyped(char character) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean scrolled(float amountX, float amountY) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 }

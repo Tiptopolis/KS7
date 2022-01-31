@@ -16,6 +16,12 @@ public interface iCollection<E> extends Iterable<E>, iGroup {
 
 	public void remove(int index); // removes item @index, shifts others up
 
+	public default E take(int index)
+	{
+		E get = this.get(index);
+		this.remove(index);
+		return get;
+	}
 
 	public boolean contains(E entry); // does has?!
 

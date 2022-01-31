@@ -9,10 +9,7 @@ public class aStack<T> extends aSet<T> {
 	}
 
 	public T pop() {
-		int last = this.getSize() - 1;
-		T get = this.get(last);
-		this.remove(last);
-		return get;
+		return this.take(0);
 	}
 
 }
