@@ -58,5 +58,6 @@ public class ConsoleInputAdapter {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Log("ConsoleDisposed");
 	}
 }

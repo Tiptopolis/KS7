@@ -123,8 +123,8 @@ public class Metatron extends _EventShell implements iMonad {
 		VTS.All.clear();
 		VTS.Primitives.clear();		
 		Log("DEAD");			
-		MetatronConsole.IO.dispose();
-		
+		//MetatronConsole.IO.dispose();
+		Gdx.app.exit();
 		System.exit(0);
 	}
 

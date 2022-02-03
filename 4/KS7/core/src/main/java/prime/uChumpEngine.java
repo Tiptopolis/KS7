@@ -50,10 +50,10 @@ public class uChumpEngine extends ApplicationAdapter {
 
 		float deltaTime = Gdx.graphics.getDeltaTime();
 		uAppUtils.update(deltaTime);
-		METATRON.update(deltaTime);
+		
 		Gdx.gl.glClearColor(0.15f, 0.15f, 0.2f, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+		METATRON.update(deltaTime);
 		// Sketcher.setProjectionMatrix(CAMERA.getProjection());
 
 		METATRON.Eye().logInput = true;
