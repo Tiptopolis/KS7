@@ -1,0 +1,7 @@
+package com.Rev.Core._aBankApp;
+
+import com.Rev.Core.Console.ConsoleUI;
+
+public class BankUI extends ConsoleUI{
+
+}

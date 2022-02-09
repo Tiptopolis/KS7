@@ -1,0 +1,23 @@
+package com.Rev.Core._MonDexApp.Data.DebugData;
+
+import com.Rev.Core.Primitive.aMap;
+import com.Rev.Core.Primitive.Data.aType;
+import com.Rev.Core.Primitive.Data.iType;
+
+public class _CreatureData {
+
+	
+	public static enum CreatureFeature
+	{
+		HUMAN;
+		
+		public static aMap<String, aType> Features;
+		
+		private CreatureFeature(aType setType)
+		{
+			
+		}
+		
+	}
+	
+}

@@ -1,0 +1,24 @@
+package com.Rev.Core.Utils.JsonButcher;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+import org.json.JSONObject;
+
+public class JSON {
+
+	public Object readFile(String fileName)
+	{
+		JSONObject o;
+		
+		try {
+			FileReader fr = new FileReader("src/main/resources/jdbc.properties");
+			//JSONObject  o;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+}

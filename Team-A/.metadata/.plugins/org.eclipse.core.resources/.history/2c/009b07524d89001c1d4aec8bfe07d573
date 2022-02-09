@@ -1,0 +1,15 @@
+package com.Rev.P1_Core._MonDexApp.Data;
+
+import com.Rev.P1_Core.Primitive.aList;
+
+public class _User_Creatures {
+	public int cID;
+	public int uID;
+
+	public aList<_Creature> UserCreatureCache;
+
+	public _User_Creatures(int c, int u) {
+		this.cID = c;
+		this.uID = u;
+	}
+}

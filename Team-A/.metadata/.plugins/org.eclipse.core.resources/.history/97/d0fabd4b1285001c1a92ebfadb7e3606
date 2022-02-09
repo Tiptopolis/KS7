@@ -1,0 +1,12 @@
+package com.Rev.Core.Utils.JsonButcher;
+
+import java.io.FileReader;
+
+public class JSON {
+
+	public Object readFile()
+	{
+		FileReader fr = new FileReader("src/main/resources/jdbc.properties");
+	}
+	
+}

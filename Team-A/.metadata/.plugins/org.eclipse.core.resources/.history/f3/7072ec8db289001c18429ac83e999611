@@ -1,0 +1,60 @@
+package com.Rev.P1_Core.Data;
+
+import static com.Rev.P1_Core.AppUtils.Log;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class DB_Manager {
+
+	
+	private static Connection connectMariaDB() {
+		// Server DB
+		Connection connection = null;
+		try {
+			Properties props = new Properties();
+			ClassLoader loader = Thread.currentThread().getContextClassLoader();
+			InputStream input = loader.getResourceAsStream("jdbc.properties");
+			props.load(input);
+			Log(props);
+
+			String connectionString = "jdbc:mariadb://" + props.getProperty("hostname") + ":"
+					+ props.getProperty("port") + "/" + props.getProperty("dbname") + "?user="
+					+ props.getProperty("username") + "&password=" + props.getProperty("password");
+
+			// Class.forName("org.mariadb.jdbc.Driver");
+
+			connection = DriverManager.getConnection(connectionString);
+
+		} catch (IOException | SQLException e) {
+			e.printStackTrace();
+		}
+		return connection;
+	}
+	
+	public String toLog() {
+		String log = "";
+		try {
+			DatabaseMetaData meta = DB_Link.getMetaData();
+			ResultSet resultSet;
+			resultSet = meta.getTables(null, null, null, new String[] { "TABLE" });
+			// log += (">> " + resultSet + " : " + resultSet.next());
+			while (resultSet.next()) {
+				String name = resultSet.getString("TABLE_NAME");
+				String schema = resultSet.getString("TABLE_SCHEM");
+				log += ("[" + name.toUpperCase() + "] on schema (" + schema + ")\n");
+				log += "  " + getColumnNames(name) + "\n";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return log;
+	}
+}

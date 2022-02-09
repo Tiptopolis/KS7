@@ -1,0 +1,15 @@
+package com.Rev.Core.Primitive.Data;
+
+public class DATA_CHEATZ {
+
+	
+	public static String buildArgsString(int length)
+	{
+		String args = "";
+		
+		
+		
+		return args;
+	}
+	
+}

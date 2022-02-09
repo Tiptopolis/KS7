@@ -1,0 +1,13 @@
+package com.Rev.Core._aBank;
+
+import com.Rev.Core.App;
+
+public class _BankApp extends App{
+
+	public BankDirector Management; // data-manager
+	
+	public _BankApp()
+	{
+		super();
+	}
+}

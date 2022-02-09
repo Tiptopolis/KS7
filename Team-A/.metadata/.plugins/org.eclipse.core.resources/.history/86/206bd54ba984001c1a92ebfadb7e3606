@@ -1,0 +1,14 @@
+package com.Rev.Core._MonDexApp.Data.DebugData;
+
+import com.Rev.Core.Primitive.Data.iType;
+
+public class _CreatureData {
+
+	
+	public static enum CreatureFeatures
+	{
+		
+		
+	}
+	
+}

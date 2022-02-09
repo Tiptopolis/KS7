@@ -1,0 +1,9 @@
+package com.Rev.Core.Utils.JsonButcher.Annotations;
+
+public @interface Range {
+
+	public float min();
+	public float max();
+	public float value() default -1;
+	
+}

@@ -1,0 +1,92 @@
+package com.Rev.P1_Core.Web;
+
+import static com.Rev.P1_Core.AppUtils.*;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.Rev.P1_Core.Math.aVector;
+import com.Rev.P1_Core._MonDexApp.MonDirector;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class UserServlet extends HttpServlet {
+
+	public static Connection DB_Link;
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setStatus(202);
+		if (MonDirector.DB_Link == null)
+			DB_Link = connectMariaDB();
+		Log(DB_Link);
+
+		Log(new aVector(1, 2, 3));
+		resp.getWriter().print("Pongity! " + DB_Link.getClass().getSimpleName());
+	}
+
+	private static Connection connectMariaDB() {
+		// Server DB
+		Connection connection = null;
+		try {
+			Properties props = new Properties();
+			ClassLoader loader = Thread.currentThread().getContextClassLoader();
+			InputStream input = loader.getResourceAsStream("jdbc.properties");
+			props.load(input);
+			Log(props);
+
+			String connectionString = "jdbc:mariadb://" + props.getProperty("hostname") + ":"
+					+ props.getProperty("port") + "/" + props.getProperty("dbname") + "?user="
+					+ props.getProperty("username") + "&password=" + props.getProperty("password");
+
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			connection = DriverManager.getConnection(connectionString);
+
+		} catch (IOException | SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return connection;
+	}
+	
+	private Connection connectSqliteDB(String fileName) {
+		// Local DB, copy data from Maria, werx but not implemented atm
+		String url = "jdbc:sqlite:C:\\Users\\Public\\Rev\\" + fileName; // <storage path, folder must already exist lol
+
+		try {
+			// moved from predicate of try(){}, leaving it there auto-closed connection lol
+			Connection conn = DriverManager.getConnection(url);
+			if (conn == null) {
+				Connection = conn;
+				DatabaseMetaData meta = conn.getMetaData();
+				Log("The driver name is " + meta.getDriverName());
+				Log("A new database has been created.");
+				// build schema if there were one lolol
+				return conn;
+			} else {
+				Connection = conn;
+				DatabaseMetaData meta = conn.getMetaData();
+				Log("got Database");
+				Log("The driver name is " + meta.getDriverName());
+				return conn;
+			}
+
+		} catch (SQLException e) {
+			Log(e.getMessage());
+			return null;
+		}
+
+		// return null;
+	}
+}

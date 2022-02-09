@@ -1,0 +1,5 @@
+package com.Rev.Core.Primitive.Data.JSON;
+
+public class JsonWriter<T> {
+
+}

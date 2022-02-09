@@ -1,0 +1,12 @@
+package com.Rev.Core._MonDexApp;
+
+import com.Rev.Core.Console.ConsoleUI;
+
+public class MonDexUI extends ConsoleUI{
+
+	public MonDexUI()
+	{
+		
+	}
+	
+}

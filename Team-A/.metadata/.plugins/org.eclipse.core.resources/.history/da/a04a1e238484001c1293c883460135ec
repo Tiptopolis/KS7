@@ -1,0 +1,7 @@
+package com.Rev.Core._MonDexApp.Data;
+
+import com.Rev.Core.Primitive.Data.aDataEntry;
+
+public class _Creature extends aDataEntry{
+
+}

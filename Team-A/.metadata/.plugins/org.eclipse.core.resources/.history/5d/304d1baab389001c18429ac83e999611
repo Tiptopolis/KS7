@@ -1,0 +1,67 @@
+package com.Rev.P1_Core.Web;
+
+import static com.Rev.P1_Core.AppUtils.*;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.Rev.P1_Core.Data.DB_Manager;
+import com.Rev.P1_Core.Math.aVector;
+import com.Rev.P1_Core._MonDexApp.MonDirector;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class UserServlet extends HttpServlet {
+
+	public static DB_Manager DB;
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setStatus(202);
+		if (DB == null)
+			DB = new DB_Manager();
+		Log(DB.Connection);
+		try {
+			Log(DB.tableExists("Creatures"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log(new aVector(1, 2, 3));
+		resp.getWriter().print("Pongity! " + DB.Connection.getClass().getSimpleName());
+	}
+
+	private static Connection connectMariaDB() {
+		// Server DB
+		Connection connection = null;
+		try {
+			Properties props = new Properties();
+			ClassLoader loader = Thread.currentThread().getContextClassLoader();
+			InputStream input = loader.getResourceAsStream("jdbc.properties");
+			props.load(input);
+			Log(props);
+
+			String connectionString = "jdbc:mariadb://" + props.getProperty("hostname") + ":"
+					+ props.getProperty("port") + "/" + props.getProperty("dbname") + "?user="
+					+ props.getProperty("username") + "&password=" + props.getProperty("password");
+
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			connection = DriverManager.getConnection(connectionString);
+
+		} catch (IOException | SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return connection;
+	}
+}

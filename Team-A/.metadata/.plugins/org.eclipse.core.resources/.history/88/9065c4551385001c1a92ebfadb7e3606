@@ -1,0 +1,10 @@
+package com.Rev.Core.Utils.JsonButcher;
+
+public class Serializer<T> {
+
+	public Serializer(T target)
+	{
+		
+	}
+	
+}

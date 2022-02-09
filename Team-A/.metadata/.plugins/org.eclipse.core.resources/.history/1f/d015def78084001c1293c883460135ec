@@ -1,0 +1,9 @@
+package com.Rev.Core._aMonDex;
+
+import com.Rev.Core.App;
+
+public class MonDexApp extends App{
+
+	
+	
+}
