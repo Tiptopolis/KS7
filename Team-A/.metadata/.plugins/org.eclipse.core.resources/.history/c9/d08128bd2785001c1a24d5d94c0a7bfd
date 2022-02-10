@@ -1,8 +1,0 @@
-package com.Rev.Core.Primitive.Data.CSV;
-
-public class TypeParser<T> {
-
-	
-	
-	
-}

@@ -1,5 +1,0 @@
-package com.Rev.Core._aBank;
-
-public class _BankApp extends App{
-
-}

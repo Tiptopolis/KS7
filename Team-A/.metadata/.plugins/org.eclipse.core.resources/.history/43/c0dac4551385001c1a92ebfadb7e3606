@@ -1,7 +1,0 @@
-package com.Rev.Core.Utils.JsonButcher;
-
-public interface iSerializable {
-
-	
-	
-}

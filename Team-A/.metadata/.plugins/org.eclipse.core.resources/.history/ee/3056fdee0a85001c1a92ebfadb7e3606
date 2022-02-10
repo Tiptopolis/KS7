@@ -1,8 +1,0 @@
-package com.Rev.Core.Utils.JsonButcher.Annotations;
-
-public @interface Range {
-
-	public Number min;
-	public Number max;
-	
-}

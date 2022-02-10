@@ -1,5 +1,0 @@
-package com.Rev.Core.Utils.JsonButcher.Annotations;
-
-public @interface CustomEditor {
-
-}
